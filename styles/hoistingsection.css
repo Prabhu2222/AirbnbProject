@@ -1,0 +1,52 @@
+.hosting{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+
+
+}
+.hosting-image{
+    width:85%;
+    height:740px;
+    background-image: url("../images/brooke-cagle-SV3e7hGlVnc-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: 10% 60%;
+  
+    
+    position:relative;
+}
+.overlay{
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color: rgba(0,0,0,.5)    
+}
+.overlay button{
+    padding:1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    position: absolute;
+    top:80%;
+    left:15%;
+}
+.overlay span{
+    color:white;
+    font-size: 96px;
+    position: absolute;
+    top:20%;
+    left:15%;
+}
+.overlay span:nth-child(3){
+   top:34%; 
+}
+.overlay span:nth-child(5){
+    top:48%;
+}

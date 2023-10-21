@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            font-family: 'Inter', sans-serif;;
+        }
+        .hosting{
+            width:100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+       
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+        
+    
+        }
+        .hosting-image{
+            width:85%;
+            height:740px;
+            background-image: url("brooke-cagle-SV3e7hGlVnc-unsplash.jpg");
+            background-repeat: no-repeat;
+            background-size:cover;
+            background-position: 10% 60%;
+          
+            
+            position:relative;
+        }
+        .overlay{
+            position: absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0;
+            background-color: rgba(0,0,0,.5)    
+        }
+        .overlay button{
+            padding:1rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            position: absolute;
+            top:80%;
+            left:15%;
+        }
+        .overlay span{
+            color:white;
+            font-size: 96px;
+            position: absolute;
+            top:20%;
+            left:15%;
+        }
+        .overlay span:nth-child(3){
+           top:34%; 
+        }
+        .overlay span:nth-child(5){
+            top:48%;
+        }
+        /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+        .gift-card{
+            width:100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+    
+
+            margin:2rem 0rem;
+            padding:2rem;
+        }
+        .gift-card-wrapper{
+            width:85%;
+            display: flex;
+            align-items: center;
+            justify-content:flex-start;
+            /* gap:28rem; */
+            /* background-color: lightgray; */
+        }
+        .gift-card-left{
+        
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            /* border:1px solid blue; */
+            
+            flex:1;
+            min-width:400px;
+        }
+        .gift-card-left span{
+            font-size: 50px;
+            font-weight: bold;
+
+        }
+        .gift-card-left button{
+            margin:2rem 0rem;
+            padding:1rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor:pointer;
+            color:white;
+            background-color: black;
+        }
+        .gift-card-right{
+            /* background-color: green; */
+            flex:1;
+            min-width:855px;
+            height:320px; 
+    
+            background-image: url("Gift Cards.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+     
+        .gift-card-wrapper img{
+            width:855px;
+            height:320px;  
+            object-fit: cover;
+        }
+
+        /* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+      .discover{
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .discover p{
+        width:85%;
+        text-align: left;
+        font-size: 36px;
+        font-weight: bold;
+      }
+      .discover-cards-wrapper{
+        width:85%;
+        display: flex;
+        align-items: center;
+        overflow-y: scroll;
+        padding-top:2rem;
+        padding-bottom: 2rem;
+        position:relative;
+    }
+    .discover-overlay{
+        width:1884px;
+        position:absolute;
+        top:2rem;
+        left:0;
+        right:0rem;
+        bottom:2rem;
+        background-color: rgba(0,0,0,.5);
+      
+  }
+
+      .discover-card{
+       display: flex;
+       flex-direction: column;
+       position:relative;
+      }
+      /* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+      .trip-cards{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items:center;
+        margin:2rem 0rem;
+      }
+      .trip-cards>p{
+        width:85%;
+        font-size: 36px;
+        font-weight: bold;
+      
+      }
+      .trip-card-wrapper{
+        width:85%;
+        display: flex;
+        align-items: center;
+        gap:2rem;
+        flex-wrap: nowrap;
+
+        padding:2rem;
+
+        overflow-x:auto;
+ 
+      }
+      .trip-card{
+        min-width:302px;
+        min-height:402px;
+   
+       
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+   
+
+        border-radius: 8px;
+        overflow: hidden;
+        flex-wrap: nowrap;
+        
+      }
+  
+      .trip-card-info{
+        background: rgba(204, 45, 74, 1);
+
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        padding:2rem;
+        padding-bottom:7rem;
+        color:white;
+       
+      }
+      .trip-card-info p:first-child{
+        font-size: 36px;
+        font-weight: bold;
+      }
+      .trip-card-info p:last-child{
+        font-size: 18px;
+      }
+
+     
+
+    </style>
+</head>
+<body>
+    <section class="trip-cards">
+        <p>Inspiration for your next trip</p>
+        <div class="trip-card-wrapper">
+            <div class="trip-card">
+                  <img src="Rectangle 1.png" alt="">
+                  <div class="trip-card-info">
+                    <p>Nashville</p>
+                    <p>53 miles away</p>
+                  </div>
+            </div>
+            <div class="trip-card">
+                  <img src="Rectangle 1 (1).png" alt="">
+                  <div class="trip-card-info"
+                  style="background-color: rgba(188, 26, 110, 1);
+                  ;">
+                    <p>South Haven</p>
+                    <p>168 miles away</p>
+                  </div>
+            </div>
+            <div class="trip-card">
+                  <img src="Rectangle 1 (2).png" alt="">
+                  <div class="trip-card-info"
+                  style="background-color: rgba(222, 49, 81, 1);
+                  ;">
+                    <p>Stanton</p>
+                    <p>192 miles away</p>
+                  </div>
+            </div>
+            <div class="trip-card">
+                  <img src="Rectangle 1.png" alt="">
+                  <div class="trip-card-info" style="background-color: rgba(217, 59, 48, 1);
+                  ;">
+                    <p>New Buffalo</p>
+                    <p>130 miles away</p>
+                  </div>
+            </div>
+          
+        </div>
+    </section>
+   <!-- <section class="discover">
+    <p>Discover Airbnb Experiences</p>
+    <div class="discover-cards-wrapper">
+        <img src="unsplash_qvO4yjZo-Mc.png" alt="">
+        <img src="unsplash_JYTWsPsIDcY.png" alt="">
+        <img src="unsplash_qvO4yjZo-Mc.png" alt="">
+        <div class="discover-overlay">
+
+        </div>
+    </div>
+   </section> -->
+
+    <!-- <section class="gift-card">
+        <div class="gift-card-wrapper">
+            <div class="gift-card-left">
+                <span>Shop Airbnb</span>
+                <span>gift cards</span>
+                <button>Learn more</button>
+            </div>
+                        <div class="gift-card-right">
+                       
+                        </div>
+                
+          
+
+        </div>
+        
+    </section> -->
+
+
+    <!-- <section class="hosting">
+          <div class="hosting-image">
+            <div class="overlay">
+                <span>Question</span><br>
+                <span>about</span><br>
+                <span>hosting?</span>
+
+                <button>Ask a Superhost</button>
+            </div>
+          </div>
+    </section> -->
+</body>
+</html>

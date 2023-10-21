@@ -1,0 +1,27 @@
+.hero-section{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    padding:4rem 0rem;
+}
+.hero-section div{
+    width:85%;
+
+    display: flex;
+    justify-content: center;
+    position:relative;
+}
+.hero-section div button{
+    position:absolute;
+    top:78%;
+    left:45%;
+   padding:1.2rem 2rem;
+  font-size:16px;
+  border-radius: 2.5rem;
+  color:purple;
+  cursor:pointer;
+  display: none;
+
+  
+}
