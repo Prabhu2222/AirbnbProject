@@ -33,7 +33,7 @@ let body=document.getElementById("main-body-left");
 fetchingData(stringObj.locationValue,stringObj.checkInValue,stringObj.checkOutValue,stringObj.guestsValues);
 
 async function fetchingData(locationValue,checkIn,checkOut,guests){
-    const url = `hps://airbnb13.p.rapidapi.com/search-location?location=${locationValue}&checkin=${checkIn}&checkout=${checkOut}&adults=${guests}`;
+    const url = `https://airbnb13.p.rapidapi.com/search-location?location=${locationValue}&checkin=${checkIn}&checkout=${checkOut}&adults=${guests}`;
     const options = {
         method: 'GET',
         headers: {
