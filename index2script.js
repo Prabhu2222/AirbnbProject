@@ -28,9 +28,140 @@ let arrayOfResults;
 let loadingDiv=document.querySelector(".loading");
 let body=document.getElementById("main-body-left");
 
+//////////////////testing purpose/////////////////////////////////////////////////////////
+// arrayOfResults=JSON.parse(localStorage.getItem("data"));
+// loadingDiv.style.animation="none";
+// loadingDiv.innerHTML=`${Math.floor(arrayOfResults.length/2)} + results found`;
+
+
+// let map;
+
+
+// function initMap() {
+//     let random=Math.floor(Math.random()*arrayOfResults.length);
+
+   
+//     map = new google.maps.Map(document.getElementById("map"), {
+//         center: { lat: arrayOfResults[random].lat, lng:arrayOfResults[random].lng }, // Centered at some default location
+//         zoom: 15
+//     });
+
+  
+//    for(let i=0;i<arrayOfResults.length;i++){
+//        let obj=arrayOfResults[i];
+//        let lat=obj.lat;
+//        let lng=obj.lng;
+//        let label=obj.name[0];
+//        let marker=addMarker(lat,lng,label);
+//        let infoWindow=new google.maps.InfoWindow({
+//         content:`<h3>${obj.name}</h3>`
+//        })
+//        marker.addListener('click',()=>{
+//         infoWindow.open(map,marker)
+//        })
+
+//    }
+  
+
+//     function addMarker(lati,longi,label){
+//         let marker=new google.maps.Marker({
+//             position:{lat:lati,lng:longi },
+//             map:map,
+//             animation:google.maps.Animation.DROP,
+//             label:label
+//         })
+ 
+//         return marker;
+//     }
+
+    
+   
+// }
+
+
+// for(let i=0;i<arrayOfResults.length;i++){
+//     let obj=arrayOfResults[i];
+//     let len=obj.images.length;
+//     let randIdx=Math.floor((Math.random()*len));
+//     let imgsrc=obj.images[randIdx];//imag link
+//     let type=obj.type;
+//     let name=obj.name;
+//     let address=obj.address;
+//     let noOfGuests=obj.persons;
+//     let bedrooms=obj.bedrooms;
+//     let beds=obj.beds;
+//     let bathrooms=obj.bathrooms;
+   
+//     let ameinitiesArr=obj.previewAmenities;
+//     let rating=obj.rating;
+//     let reviewCount=obj.reviewsCount;
+//     let price=obj.price.rate;
+
+
+//     let newCard= createCard(imgsrc,type,name,address,noOfGuests,bedrooms,beds,bathrooms,ameinitiesArr,rating,reviewCount,price);
+//     body.appendChild(newCard);
+
+// }
+
+
+
+
+/////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////
 
 
 fetchingData(stringObj.locationValue,stringObj.checkInValue,stringObj.checkOutValue,stringObj.guestsValues);
+
+
+
+let map;
+
+
+function initMap() {
+  //  let arrayOfResults= fetchingData(stringObj.locationValue,stringObj.checkInValue,stringObj.checkOutValue,stringObj.guestsValues);
+
+  let random=Math.floor(Math.random()*arrayOfResults.length);
+
+ 
+  map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: arrayOfResults[random].lat, lng:arrayOfResults[random].lng }, // Centered at some default location
+      zoom: 12
+  });
+
+
+ for(let i=0;i<arrayOfResults.length;i++){
+     let obj=arrayOfResults[i];
+     let lat=obj.lat;
+     let lng=obj.lng;
+     let label=obj.name[0];
+     let marker=addMarker(lat,lng,label);
+     let infoWindow=new google.maps.InfoWindow({
+      content:`<h3>${obj.name}</h3>`
+     })
+     marker.addListener('click',()=>{
+      infoWindow.open(map,marker)
+     })
+
+ }
+
+
+  function addMarker(lati,longi,label){
+      let marker=new google.maps.Marker({
+          position:{lat:lati,lng:longi },
+          map:map,
+          animation:google.maps.Animation.DROP,
+          label:label
+      })
+
+      return marker;
+  }
+
+  
+ 
+}
+
+
 
 async function fetchingData(locationValue,checkIn,checkOut,guests){
     const url = `https://airbnb13.p.rapidapi.com/search-location?location=${locationValue}&checkin=${checkIn}&checkout=${checkOut}&adults=${guests}`;
@@ -46,8 +177,11 @@ async function fetchingData(locationValue,checkIn,checkOut,guests){
         const response = await fetch(url, options);
         const result = await response.json();
         arrayOfResults=result.results;
+        localStorage.setItem("data",JSON.stringify(arrayOfResults));
         loadingDiv.style.animation="none";
-        loadingDiv.innerHTML=`${Math.floor(arrayOfResults.length/2)} + results found`;
+        loadingDiv.innerHTML=`${Math.floor(arrayOfResults.length/2)} + results found.`;
+
+        initMap();
 
         for(let i=0;i<arrayOfResults.length;i++){
             let obj=arrayOfResults[i];
@@ -191,4 +325,65 @@ function createCard(imgsrc,type,name,address,guests,bedrooms,bed,bathrooms,amein
 
  return cardDiv;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////map section////////////////////////////
+
+
+ 
+
+
+
+
+// let map;
+
+// function initMap() {
+//     map = new google.maps.Map(document.getElementById("map"), {
+//         center: { lat: 28.7041, lng: 77.1025 }, // Centered at some default location
+//         zoom: 8
+//     });
+
+//     const marker=new google.maps.Marker({
+//         position:{ lat: 28.7041, lng: 77.1025 },
+//         map:map
+//     })
+//     // console.log(marker); 
+// }
+
+
+  
+
+
+
 
