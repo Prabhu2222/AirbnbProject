@@ -6,7 +6,7 @@ if(stringObj==null){
     
 }
 stringObj=JSON.parse(stringObj);
-localStorage.clear();
+// localStorage.clear();
 
 //updating index2 header
 
@@ -27,6 +27,8 @@ child3.children[0].innerText=stringObj.guestsValues+" guests";
 let arrayOfResults;
 let loadingDiv=document.querySelector(".loading");
 let body=document.getElementById("main-body-left");
+
+let overlay=document.getElementById("overlay");
 
 //////////////////testing purpose/////////////////////////////////////////////////////////
 // arrayOfResults=JSON.parse(localStorage.getItem("data"));
@@ -180,7 +182,7 @@ async function fetchingData(locationValue,checkIn,checkOut,guests){
         localStorage.setItem("data",JSON.stringify(arrayOfResults));
         loadingDiv.style.animation="none";
         loadingDiv.innerHTML=`${Math.floor(arrayOfResults.length/2)} + results found.`;
-
+        document.querySelector(".hzal-bar").style.height="4px";
         initMap();
 
         for(let i=0;i<arrayOfResults.length;i++){
@@ -200,9 +202,18 @@ async function fetchingData(locationValue,checkIn,checkOut,guests){
             let rating=obj.rating;
             let reviewCount=obj.reviewsCount;
             let price=obj.price.rate;
+            let totalPrice=obj.price.total;
+            let priceItemsArr=obj.price.priceItems;
         
-          let newCard= createCard(imgsrc,type,name,address,noOfGuests,bedrooms,beds,bathrooms,ameinitiesArr,rating,reviewCount,price);
+            let newCard= createCard(imgsrc,type,name,address,noOfGuests,bedrooms,beds,bathrooms,ameinitiesArr,rating,reviewCount,price);
             body.appendChild(newCard);
+
+            //add evntlilstner for eachcard
+            newCard.addEventListener('click',(event)=>{
+                overlay.style.display="block";
+                let newCard= createPricingCard(price,rating,reviewCount,priceItemsArr,totalPrice);
+                document.body.appendChild(newCard);
+           })
         }
   
     } catch (error) {
@@ -253,7 +264,7 @@ function createCard(imgsrc,type,name,address,guests,bedrooms,bed,bathrooms,amein
        let cardDivRightTopRight=document.createElement("div");
        cardDivRightTopRight.className="card-right-top-right";
        let span3=document.createElement("span");
-       span3.innerHTML=`<i class="fa-solid fa-heart"  style="color:#F59E0B"></i>`;
+       span3.innerHTML=`<i class="fa-solid fa-heart" style="color: #d3c0c0;"></i>`;
 
        cardDivRightTopRight.appendChild(span3);
     
@@ -327,6 +338,90 @@ function createCard(imgsrc,type,name,address,guests,bedrooms,bed,bathrooms,amein
 }
 
 
+function createPricingCard(price,rating,review,priceItemsArr,total){
+    let priceCardDiv=document.createElement("div");
+    priceCardDiv.className="cardPriceDetails";
+     let cardTopDiv=document.createElement("div");
+     cardTopDiv.className="cpd-top"
+      let img=document.createElement("img");
+      img.src="images/Vector2.png";
+      let button=document.createElement("button");
+      button.innerText="Close"
+      button.addEventListener('click',removeFrombody);
+      cardTopDiv.append(img,button);
+    priceCardDiv.appendChild(cardTopDiv);
+    
+    
+    let ratingsDiv=document.createElement("div");
+    ratingsDiv.className="cpd";
+    let span1=document.createElement("span")
+    span1.innerHTML=`<b>\$${price}</b>/night`//price
+    let span2=document.createElement("span")
+    span2.innerHTML=`<i class="fa-solid fa-star" style="color:#F59E0B"></i>&nbsp;<b>${rating}</b>&nbsp;(${review} reviews)`;//rating , review
+    ratingsDiv.append(span1,span2);
+    
+    priceCardDiv.appendChild(ratingsDiv);
+
+    let priceDiv=document.createElement("div");
+    priceDiv.className='cpd';
+    priceDiv.innerHTML=`<h2>Price Details:</h2>`
+
+    priceCardDiv.appendChild(priceDiv);
+    let linediv=document.createElement("div");
+    linediv.className="line"
+    priceCardDiv.appendChild(linediv);
+
+    //dynamically add all other pricings from data ->all price goes here
+    for(let i=0;i<priceItemsArr.length;i++){
+        let priceObj=priceItemsArr[i];
+        let div=document.createElement("div");
+        div.className='cpd';
+        let spanX=document.createElement("span");
+        spanX.innerText=priceObj.title+":";
+        let spanY=document.createElement("span");
+        spanY.innerHTML=`<b>\$${priceObj.amount}</b>`;
+
+        div.append(spanX,spanY);
+        priceCardDiv.append(div);
+    }
+                                                   
+
+    //total amount
+    let linediv2=document.createElement("div");
+    linediv2.className="line"
+    priceCardDiv.appendChild(linediv2);
+
+    let totalDiv=document.createElement("div");
+    totalDiv.className='cpd';
+    let span3=document.createElement("span");
+    span3.innerHTML=`<b>Total:</b>`;
+    let span4=document.createElement("span");
+    span4.innerHTML=`<b>\$${total}</b>`;
+    totalDiv.append(span3,span4);
+
+    priceCardDiv.appendChild(totalDiv);
+
+    return priceCardDiv;
+}
+
+function removeFrombody(event){
+    //to remove from the body
+    overlay.style.display="none";
+    let myTarget=event.target.parentNode.parentNode;
+    myTarget.remove();
+}
+
+
+
+
+
+// let card=document.querySelector(".card");
+// let overlay=document.getElementById("overlay");
+// card.addEventListener('click',(event)=>{
+//      overlay.style.display="block";
+//     let newCard= createPricingCard();
+//     document.body.appendChild(newCard);
+// })
 
 
 
@@ -357,29 +452,6 @@ function createCard(imgsrc,type,name,address,guests,bedrooms,bed,bathrooms,amein
 
 
 
-
-////////////////////////map section////////////////////////////
-
-
- 
-
-
-
-
-// let map;
-
-// function initMap() {
-//     map = new google.maps.Map(document.getElementById("map"), {
-//         center: { lat: 28.7041, lng: 77.1025 }, // Centered at some default location
-//         zoom: 8
-//     });
-
-//     const marker=new google.maps.Marker({
-//         position:{ lat: 28.7041, lng: 77.1025 },
-//         map:map
-//     })
-//     // console.log(marker); 
-// }
 
 
   
